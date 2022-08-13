@@ -53,7 +53,7 @@ class MaxByListSpider(scrapy.Spider):
             
             if currentPage!=totalPages:
                 next_url=response.url.replace("page="+str(int(nextPage)-1),"page="+str(nextPage))
-                print(">>>>>>>&&&&&&&&&&&&&&&&&&&"+next_url)
+                print(">>"+next_url)
                 yield scrapy.Request(url=next_url, callback=self.parse_detail)
 
         except Exception as e:
