@@ -6,7 +6,7 @@ class DownloadSpider(scrapy.Spider):
 
     def start_requests(self):
         urls = [
-            'https://www.maxwarehouse.com/collections/summer-time'
+            'https://www.roxy.com/sale/'
         ]
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)

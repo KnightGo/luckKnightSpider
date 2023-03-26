@@ -15,21 +15,21 @@ class LuckknightspiderPipeline:
 
     def __init__(self): 
         self.data_excel=[]
+        self.item_list = ['image','url','title','upc','coupon_price','price','original_price','on_sale','inventory'] 
 
     def process_item(self, item, spider):
+        self.f_excel = pd.ExcelWriter(format("./data/%s.xlsx"%spider.fileName))
         li_temp = np.array(list(dict(item).values()))
         li_data = []
         for i in range(len(li_temp)):
             li_data.append(str(li_temp[i]))
         self.data_excel.append(li_data)
-
-        return item                  
-
-    def close_spider(self,spider):
-        print(spider)
-        self.item_list = ['image','url','title','upc','coupon_price','price','original_price','on_sale','inventory'] 
-        self.f_excel = pd.ExcelWriter("bird-feeding.xlsx")
         self.data_df = pd.DataFrame(self.data_excel)
         self.data_df.columns = self.item_list
         self.data_df.to_excel(self.f_excel, float_format='%.5f',index=False)
         self.f_excel.save()
+        return item                  
+
+    # def close_spider(self,spider):
+    #         spider.driver.quit()
+       
