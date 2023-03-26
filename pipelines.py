@@ -29,7 +29,7 @@ class LuckknightspiderPipeline:
         self.data_df.to_excel(self.f_excel, float_format='%.5f',index=False)
         self.f_excel.save()
         return item                  
-
+    # def open_spider(self,spider):
     # def close_spider(self,spider):
     #         spider.driver.quit()
        
